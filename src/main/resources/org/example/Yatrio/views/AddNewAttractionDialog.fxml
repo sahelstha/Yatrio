@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Yatrio.controllers.AddNewAttractionController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Add New Attraction" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleClose" style="-fx-background-color: transparent; -fx-text-fill: #666;" text="✕" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <content>
+                <VBox spacing="15.0">
+                    <children>
+                        <!-- Image Section -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold;" text="Attraction Image" />
+                                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                                    <children>
+                                        <VBox alignment="CENTER" spacing="5.0">
+                                            <children>
+                                                <ImageView fx:id="imagePreview" fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #ddd; -fx-border-width: 1;" />
+                                                <Label fx:id="imageStatusLabel" style="-fx-font-size: 12px; -fx-text-fill: #666;" text="No image selected" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="10.0">
+                                            <children>
+                                                <Button fx:id="selectImageButton" onAction="#handleSelectImage" prefWidth="120.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Select Image" />
+                                                <Button fx:id="removeImageButton" onAction="#handleRemoveImage" prefWidth="120.0" style="-fx-background-color: #f44336; -fx-text-fill: white;" text="Remove Image" visible="false" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                                <Label style="-fx-font-size: 12px; -fx-text-fill: #666;" text="Supported formats: JPG, PNG, GIF, BMP (Max 5MB)" />
+                            </children>
+                        </VBox>
+
+                        <Separator />
+
+                        <!-- Basic Information -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold;" text="Basic Information" />
+                                <GridPane hgap="15.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Name *" />
+                                        <TextField fx:id="nameField" promptText="Enter attraction name" GridPane.columnIndex="1" />
+                                        <Label text="Type *" GridPane.rowIndex="1" />
+                                        <ComboBox fx:id="typeComboBox" prefWidth="250.0" promptText="Select attraction type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Location *" GridPane.rowIndex="2" />
+                                        <TextField fx:id="locationField" promptText="Enter location" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label text="Difficulty *" GridPane.rowIndex="3" />
+                                        <ComboBox fx:id="difficultyComboBox" prefWidth="250.0" promptText="Select difficulty level" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+
+                        <!-- Details -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold;" text="Details" />
+                                <GridPane hgap="15.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Altitude *" />
+                                        <TextField fx:id="altitudeField" promptText="Enter altitude (meters)" GridPane.columnIndex="1" />
+                                        <Label text="Duration *" GridPane.rowIndex="1" />
+                                        <TextField fx:id="durationField" promptText="e.g., 3 days, 2 weeks" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Best Season *" GridPane.rowIndex="2" />
+                                        <TextField fx:id="bestSeasonField" promptText="e.g., March-May, October-November" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label text="Price (USD) *" GridPane.rowIndex="3" />
+                                        <TextField fx:id="priceField" promptText="Enter price per day" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+
+                        <!-- Description -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <Label style="-fx-font-weight: bold;" text="Description" />
+                                <TextArea fx:id="descriptionArea" prefRowCount="4" promptText="Enter detailed description of the attraction..." wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <!-- Action Buttons -->
+        <HBox alignment="CENTER_RIGHT" spacing="10.0">
+            <children>
+                <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" prefWidth="80.0" style="-fx-background-color: #757575; -fx-text-fill: white;" text="Cancel" />
+                <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" prefWidth="80.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Save" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+    </children>
+</VBox>

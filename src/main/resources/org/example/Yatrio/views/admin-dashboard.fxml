@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #f8fafc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Yatrio.controllers.AdminController">
+    <top>
+        <VBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 20px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 8, 0, 0, 2);">
+                <ImageView fitHeight="70.0" fitWidth="106.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@../images/logoo.png" />
+                    </image>
+                </ImageView>
+                <Label prefHeight="36.0" prefWidth="533.0" style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #374151;" text="Admin Dashboard&#10;Admin Panel - Welcome System Administrator" />
+                <Region prefHeight="70.0" prefWidth="518.0" HBox.hgrow="ALWAYS" />
+                <Button onAction="#logout" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #f3f4f6; -fx-text-fill: #374151; -fx-font-weight: 600; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-color: #d1d5db; -fx-border-width: 1px;" text="Logout" />
+            </HBox>
+            <!-- Navigation Tabs -->
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="1015.0" spacing="4" style="-fx-background-color: #f1f5f9; -fx-padding: 8px 24px;">
+                <ToggleButton fx:id="analyticsTab" prefHeight="44.0" prefWidth="200.0" styleClass="active-tab" text="📊 Analytics">
+                    <HBox.margin>
+                        <Insets left="8.0" right="14.0" />
+                    </HBox.margin>
+                </ToggleButton>
+                <ToggleButton fx:id="touristTab" prefHeight="44.0" prefWidth="200.0" styleClass="inactive-tab" text="👥 Tourists">
+                    <HBox.margin>
+                        <Insets left="14.0" right="8.0" />
+                    </HBox.margin>
+                </ToggleButton>
+                <ToggleButton fx:id="guideTab" prefHeight="44.0" prefWidth="200.0" styleClass="inactive-tab" text="🗺️ Guides">
+                    <HBox.margin>
+                        <Insets left="14.0" right="8.0" />
+                    </HBox.margin>
+                </ToggleButton>
+                <ToggleButton fx:id="attractionTab" prefHeight="44.0" prefWidth="200.0" styleClass="inactive-tab" text="🏔️ Attractions">
+                    <HBox.margin>
+                        <Insets left="14.0" right="8.0" />
+                    </HBox.margin>
+                </ToggleButton>
+                <ToggleButton fx:id="bookingTab" prefHeight="44.0" prefWidth="200.0" styleClass="inactive-tab" text="📅 Bookings">
+                    <HBox.margin>
+                        <Insets left="14.0" right="8.0" />
+                    </HBox.margin>
+                </ToggleButton>
+                <ToggleButton fx:id="emergencyTab" prefHeight="44.0" prefWidth="200.0" styleClass="inactive-tab" text="🚨 Emergency">
+                    <HBox.margin>
+                        <Insets left="8.0" right="8.0" />
+                    </HBox.margin></ToggleButton>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <!-- Analytics Pane -->
+            <VBox fx:id="analyticsPane" prefHeight="1500.0" prefWidth="1075.0" spacing="30.0" style="-fx-padding: 30;">
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                    <VBox spacing="40.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="1286.0" spacing="15.0">
+                     <Label prefHeight="29.0" prefWidth="281.0" text="System Overview">
+                        <font>
+                           <Font name="System Bold" size="24.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="19.0" />
+                        </HBox.margin>
+                     </Label>
+                            <Region prefHeight="26.0" prefWidth="576.0" HBox.hgrow="ALWAYS" />
+                            <Button fx:id="refreshAnalyticsButton" onAction="#refreshAnalytics" prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-height: 38;" text="🔄 Refresh Analytics" />
+                            <Label fx:id="lastUpdatedLabel" prefHeight="15.0" prefWidth="178.0" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" text="Last updated: Never" />
+                            <VBox.margin>
+                                <Insets left="10.0" top="18.0" />
+                            </VBox.margin>
+                        </HBox>
+
+                        <!-- Summary Cards -->
+                        <GridPane hgap="25.0" style="-fx-padding: 10;" vgap="25.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="250.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="250.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="250.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="250.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="120.0" prefHeight="140.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+
+                            <VBox alignment="CENTER" spacing="12.0" style="-fx-background-color: white; -fx-border-radius: 10px; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                <Label fx:id="totalTouristsLabel" style="-fx-text-fill: #3498db; -fx-font-size: 24px; -fx-font-weight: bold;" text="0" />
+                                <Label style="-fx-text-fill: black; -fx-font-size: 14px;" text="Total Tourists" />
+                                <Label fx:id="touristGrowthLabel" style="-fx-text-fill: green; -fx-font-size: 12px;" text="+0 this month" />
+                            </VBox>
+
+                            <VBox alignment="CENTER" spacing="12.0" style="-fx-background-color: white; -fx-border-radius: 10px; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                <Label fx:id="activeGuidesLabel" style="-fx-text-fill: #e67e22; -fx-font-size: 24px; -fx-font-weight: bold;" text="0" />
+                                <Label style="-fx-text-fill: black; -fx-font-size: 14px;" text="Active Guides" />
+                                <Label fx:id="guideStatusLabel" style="-fx-text-fill: green; -fx-font-size: 12px;" text="0 total guides" />
+                            </VBox>
+
+                            <VBox alignment="CENTER" spacing="12.0" style="-fx-background-color: white; -fx-border-radius: 10px; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                <Label fx:id="totalBookingsLabel" style="-fx-text-fill: #27ae60; -fx-font-size: 24px; -fx-font-weight: bold;" text="0" />
+                                <Label style="-fx-text-fill: black; -fx-font-size: 14px;" text="Total Bookings" />
+                                <Label fx:id="bookingStatusLabel" style="-fx-text-fill: green; -fx-font-size: 12px;" text="0 pending" />
+                            </VBox>
+
+                            <VBox alignment="CENTER" spacing="12.0" style="-fx-background-color: white; -fx-border-radius: 10px; -fx-padding: 25; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                <Label fx:id="totalRevenueLabel" style="-fx-text-fill: #9b59b6; -fx-font-size: 24px; -fx-font-weight: bold;" text="'$0'" />
+                                <Label style="-fx-text-fill: black; -fx-font-size: 14px;" text="Total Revenue" />
+                                <Label fx:id="revenueStatusLabel" style="-fx-text-fill: green; -fx-font-size: 12px;" text="Avg: $0" />
+                            </VBox>
+
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </VBox.margin>
+                        </GridPane>
+
+                        <!-- Charts Section -->
+                        <VBox spacing="35.0">
+                            <!-- Pie Chart Section -->
+                            <VBox spacing="40.0" style="-fx-background-color: white; -fx-padding: 40; -fx-border-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Distribution Chart">
+                                        <HBox.margin>
+                                            <Insets right="60.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="chartTypeComboBox" onAction="#changeChartType" prefWidth="200.0">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="Tourists by Nationality" />
+                                                <String fx:value="Bookings by Status" />
+                                                <String fx:value="Attractions by Type" />
+                                            </FXCollections>
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
+                                <PieChart fx:id="mainPieChart" minHeight="800.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" />
+                            </VBox>
+
+                            <!-- Bar Chart Section -->
+                            <VBox spacing="40.0" style="-fx-background-color: white; -fx-padding: 40; -fx-border-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Performance Chart">
+                                        <HBox.margin>
+                                            <Insets right="60.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="barChartTypeComboBox" onAction="#changeBarChartType" prefWidth="200.0">
+                                        <items>
+                                            <FXCollections fx:factory="observableArrayList">
+                                                <String fx:value="Top Attractions" />
+                                                <String fx:value="Monthly Bookings" />
+                                                <String fx:value="Guide Performance" />
+                                            </FXCollections>
+                                        </items>
+                                    </ComboBox>
+                                </HBox>
+                                <BarChart fx:id="popularAttractionsChart" minHeight="800.0" minWidth="1100.0" prefHeight="800.0" prefWidth="1100.0">
+                                    <xAxis>
+                                        <CategoryAxis fx:id="barChartXAxis" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis fx:id="barChartYAxis" />
+                                    </yAxis>
+                                </BarChart>
+                            </VBox>
+                        </VBox>
+                    </VBox>
+                </ScrollPane>
+            </VBox>
+
+            <!-- Tourist Pane -->
+            <VBox fx:id="touristPane" spacing="20.0" style="-fx-padding: 25;" visible="false">
+                <VBox style="-fx-background-color: white; -fx-padding: 20px; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #1f2937;" text="👥 Tourist Management" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="touristSearchField" prefHeight="38.0" prefWidth="280.0" promptText="🔍 Search tourists by name, email..." style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 0 12px; -fx-font-size: 14px;" />
+                        <ComboBox fx:id="touristNationalityFilter" prefHeight="38.0" prefWidth="180.0" promptText="All Nationalities" style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px;" />
+                        <Button onAction="#exportTouristData" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="📊 Export CSV" />
+                    </HBox>
+                </VBox>
+
+                <!-- Table Section -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-padding: 0;">
+                    <TableView fx:id="touristTable" prefHeight="550.0" style="-fx-background-color: transparent; -fx-table-cell-border-color: #f3f4f6; -fx-background-radius: 12px;">
+                        <columns>
+                            <TableColumn fx:id="touristNameColumn" prefWidth="250.0" text="Full Name" />
+                            <TableColumn fx:id="touristNationalityColumn" prefWidth="150.0" text="Nationality" />
+                            <TableColumn fx:id="touristContactColumn" prefWidth="280.0" text="Email Address" />
+                            <TableColumn fx:id="touristEmergencyColumn" prefWidth="200.0" text="Emergency Contact" />
+                            <TableColumn fx:id="touristRegDateColumn" prefWidth="180.0" text="Registration Date" />
+                            <TableColumn fx:id="touristStatusColumn" prefWidth="120.0" text="Status" />
+                            <TableColumn fx:id="touristActionColumn" prefWidth="140.0" text="Actions" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Guide Pane -->
+            <VBox fx:id="guidePane" spacing="20.0" style="-fx-padding: 25;" visible="false">
+                <VBox style="-fx-background-color: white; -fx-padding: 20px; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #1f2937;" text="🗺️ Guide Management" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="guideSearchField" prefHeight="38.0" prefWidth="220.0" promptText="🔍 Search guides..." style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 0 12px; -fx-font-size: 14px;" />
+                        <ComboBox fx:id="guideSpecializationFilter" prefHeight="38.0" prefWidth="180.0" promptText="All Specializations" style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px;" />
+                        <Button onAction="#openAddGuideForm" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="➕ Add Guide" />
+                        <Button onAction="#exportGuideData" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="📊 Export CSV" />
+                    </HBox>
+                </VBox>
+
+                <!-- Table Section -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-padding: 0;">
+                    <TableView fx:id="guideTable" prefHeight="550.0" style="-fx-background-color: transparent; -fx-table-cell-border-color: #f3f4f6; -fx-background-radius: 12px;">
+                        <columns>
+                            <TableColumn fx:id="guideNameColumn" prefWidth="180.0" text="Guide Name" />
+                            <TableColumn fx:id="guideLanguageColumn" prefWidth="160.0" text="Languages" />
+                            <TableColumn fx:id="guideSpecializationColumn" prefWidth="180.0" text="Specialization" />
+                            <TableColumn fx:id="guideExperienceColumn" prefWidth="120.0" text="Experience" />
+                            <TableColumn fx:id="guideRatingColumn" prefWidth="100.0" text="Rating" />
+                            <TableColumn fx:id="guideContactColumn" prefWidth="200.0" text="Contact Info" />
+                            <TableColumn fx:id="guideStatusColumn" prefWidth="120.0" text="Status" />
+                            <TableColumn fx:id="guideActionColumn" prefWidth="160.0" text="Actions" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Attraction Pane -->
+            <VBox fx:id="attractionPane" spacing="20.0" style="-fx-padding: 25;" visible="false">
+                <VBox style="-fx-background-color: white; -fx-padding: 20px; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #1f2937;" text="🏔️ Attraction Management" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="attractionSearchField" prefHeight="38.0" prefWidth="200.0" promptText="🔍 Search attractions..." style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 0 12px; -fx-font-size: 14px;" />
+                        <ComboBox fx:id="attractionTypeFilter" prefHeight="38.0" prefWidth="140.0" promptText="All Types" style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px;" />
+                        <ComboBox fx:id="attractionDifficultyFilter" prefHeight="38.0" prefWidth="140.0" promptText="All Difficulties" style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px;" />
+                        <Button onAction="#openAddAttractionDialog" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #3b82f6; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="➕ Add Attraction" />
+                        <Button onAction="#exportAttractionData" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="📊 Export CSV" />
+                    </HBox>
+                </VBox>
+
+                <!-- Table Section -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-padding: 0;">
+                    <TableView fx:id="attractionTable" prefHeight="550.0" style="-fx-background-color: transparent; -fx-table-cell-border-color: #f3f4f6; -fx-background-radius: 12px;">
+                        <columns>
+                            <TableColumn fx:id="attractionNameColumn" prefWidth="220.0" text="Attraction Name" />
+                            <TableColumn fx:id="attractionTypeColumn" prefWidth="140.0" text="Type" />
+                            <TableColumn fx:id="attractionLocationColumn" prefWidth="160.0" text="Location" />
+                            <TableColumn fx:id="attractionDifficultyColumn" prefWidth="120.0" text="Difficulty" />
+                            <TableColumn fx:id="attractionAltitudeColumn" prefWidth="120.0" text="Altitude" />
+                            <TableColumn fx:id="attractionDurationColumn" prefWidth="120.0" text="Duration" />
+                            <TableColumn fx:id="attractionStatusColumn" prefWidth="120.0" text="Status" />
+                            <TableColumn fx:id="attractionActionColumn" prefWidth="160.0" text="Actions" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Booking Pane -->
+            <VBox fx:id="bookingPane" spacing="20.0" style="-fx-padding: 25;" visible="false">
+                <VBox style="-fx-background-color: white; -fx-padding: 20px; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #1f2937;" text="📅 Booking Management" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="bookingSearchField" prefHeight="38.0" prefWidth="200.0" promptText="🔍 Search bookings..." style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 0 12px; -fx-font-size: 14px;" />
+                        <ComboBox fx:id="bookingStatusFilter" prefHeight="38.0" prefWidth="150.0" promptText="All Statuses" style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 8px; -fx-background-radius: 8px;" />
+                        <Button onAction="#refreshBookingData" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #6366f1; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="🔄 Refresh" />
+                        <Button onAction="#exportBookingData" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="📊 Export CSV" />
+                    </HBox>
+                </VBox>
+
+                <!-- Table Section -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-padding: 0;">
+                    <TableView fx:id="bookingTable" prefHeight="550.0" style="-fx-background-color: transparent; -fx-table-cell-border-color: #f3f4f6; -fx-background-radius: 12px;">
+                        <columns>
+                            <TableColumn fx:id="bookingTouristColumn" prefWidth="160.0" text="Tourist Name" />
+                            <TableColumn fx:id="bookingAttractionColumn" prefWidth="180.0" text="Attraction" />
+                            <TableColumn fx:id="bookingDatesColumn" prefWidth="150.0" text="Travel Dates" />
+                            <TableColumn fx:id="bookingCostColumn" prefWidth="120.0" text="Cost (USD)" />
+                            <TableColumn fx:id="bookingStatusColumn" prefWidth="120.0" text="Status" />
+                            <TableColumn fx:id="bookingGuideColumn" prefWidth="150.0" text="Assigned Guide" />
+                            <TableColumn fx:id="bookingAssignColumn" prefWidth="140.0" text="Assign Guide" />
+                            <TableColumn fx:id="bookingActionColumn" prefWidth="120.0" text="Details" />
+                            <TableColumn fx:id="bookingRemoveColumn" prefWidth="120.0" text="Remove" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Emergency Pane -->
+            <VBox fx:id="emergencyPane" spacing="20.0" style="-fx-padding: 25;" visible="false">
+                <VBox style="-fx-background-color: white; -fx-padding: 20px; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <Label style="-fx-font-size: 22px; -fx-font-weight: 700; -fx-text-fill: #1f2937;" text="🚨 Emergency Contact Management" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button onAction="#openAddContact" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="🚨 Add Emergency Contact" />
+                        <Button onAction="#exportEmergencyData" prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-font-weight: 600; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);" text="📊 Export CSV" />
+                    </HBox>
+                </VBox>
+
+                <!-- Table Section -->
+                <VBox style="-fx-background-color: white; -fx-background-radius: 12px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-padding: 0;">
+                    <TableView fx:id="emergencyTable" prefHeight="550.0" style="-fx-background-color: transparent; -fx-table-cell-border-color: #f3f4f6; -fx-background-radius: 12px;">
+                        <columns>
+                            <TableColumn fx:id="emergencyNameColumn" prefWidth="200.0" text="Service Name" />
+                            <TableColumn fx:id="emergencyOrgColumn" prefWidth="200.0" text="Organization" />
+                            <TableColumn fx:id="emergencyPhoneColumn" prefWidth="180.0" text="Contact Number" />
+                            <TableColumn fx:id="emergencyTypeColumn" prefWidth="150.0" text="Service Type" />
+                            <TableColumn fx:id="emergencyLocationColumn" prefWidth="200.0" text="Location" />
+                            <TableColumn fx:id="emergency24_7Column" prefWidth="150.0" text="24/7 Available" />
+                            <TableColumn fx:id="emergencyActionColumn" prefWidth="160.0" text="Actions" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>
